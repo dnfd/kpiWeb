@@ -70,3 +70,12 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "rswag", "~> 2.9"
+
+gem "rswag-api", "~> 2.9"
+gem "rswag-ui", "~> 2.9"
+
+gem "rspec-rails", "~> 6.0"
+
+gem "rswag-specs", "~> 2.9"

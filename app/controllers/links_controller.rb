@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
   before_action :set_link, only: %i[ show edit update destroy ]
+  before_action :require_login
 
   # GET /links or /links.json
   def index
@@ -58,13 +59,15 @@ class LinksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_link
-      @link = Link.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_link
+    @link = Link.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def link_params
-      params.fetch(:link, {})
-    end
+  # Only allow a list of trusted parameters through.
+  def link_params
+    params.fetch(:link, params)
+          .permit(:full)
+          .merge(user: current_user)
+  end
 end

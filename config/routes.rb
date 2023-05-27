@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :links
   resources :users
-  resources :session, only: %i[create destroy]
+  resources :session, only: %i[create] do
+    delete :destroy, on: :collection
+  end
 
   get 'home/index'
 

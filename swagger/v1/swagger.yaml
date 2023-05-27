@@ -62,6 +62,17 @@ paths:
       responses:
         '200':
           description: successful
+  "/session":
+    delete:
+      summary: delete session
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create session
+      responses:
+        '200':
+          description: successful
   "/users":
     get:
       summary: list users
@@ -121,7 +132,7 @@ paths:
         '200':
           description: successful
 servers:
-- url: https://{defaultHost}
+- url: http://{defaultHost}
   variables:
     defaultHost:
-      default: www.example.com
+      default: localhost:3000

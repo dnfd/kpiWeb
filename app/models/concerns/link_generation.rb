@@ -3,9 +3,7 @@ module LinkGeneration
 
   ALPHABET = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split('')
 
-  included do
-    after_create { update(short: generate_short_link) }
-  end
+  included { after_create { update(short: generate_short_link) } }
 
   def generate_short_link = "http::/localhost:3000/#{short_from_int(id)}"
 

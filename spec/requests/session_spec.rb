@@ -1,18 +1,35 @@
-require 'rails_helper'
+require 'swagger_helper'
 
-RSpec.describe "Sessions", type: :request do
-  describe "GET /create" do
-    it "returns http success" do
-      get "/session/create"
-      expect(response).to have_http_status(:success)
+RSpec.describe 'session', type: :request do
+
+  path '/session' do
+
+    delete('delete session') do
+      response(200, 'successful') do
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+    end
+
+    post('create session') do
+      response(200, 'successful') do
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
     end
   end
-
-  describe "GET /delete" do
-    it "returns http success" do
-      get "/session/delete"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
 end

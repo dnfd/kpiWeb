@@ -3,7 +3,123 @@ openapi: 3.0.1
 info:
   title: API V1
   version: v1
-paths: {}
+paths:
+  "/links":
+    get:
+      summary: list links
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create link
+      responses:
+        '200':
+          description: successful
+  "/links/new":
+    get:
+      summary: new link
+      responses:
+        '200':
+          description: successful
+  "/links/{id}/edit":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: edit link
+      responses:
+        '200':
+          description: successful
+  "/links/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show link
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update link
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update link
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete link
+      responses:
+        '200':
+          description: successful
+  "/users":
+    get:
+      summary: list users
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create user
+      responses:
+        '200':
+          description: successful
+  "/users/new":
+    get:
+      summary: new user
+      responses:
+        '200':
+          description: successful
+  "/users/{id}/edit":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: edit user
+      responses:
+        '200':
+          description: successful
+  "/users/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show user
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update user
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update user
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete user
+      responses:
+        '200':
+          description: successful
 servers:
 - url: https://{defaultHost}
   variables:

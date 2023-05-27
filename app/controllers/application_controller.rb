@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   def require_login = (unauthorized unless current_user)
 
   def current_user
-    @current_user ||= nil
+    pp session[:user_id]
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 
   def unauthorized

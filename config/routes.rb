@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   resources :links
-  mount Rswag::Ui::Engine => '/api-docs'
-  mount Rswag::Api::Engine => '/api-docs'
   resources :users
+  resources :session, only: %i[create destroy]
 
   get 'home/index'
+
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

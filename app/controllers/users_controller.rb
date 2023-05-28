@@ -2,16 +2,16 @@ class UsersController < ApplicationController
   wrap_parameters :user, include: %i[email password first_name last_name dob gender]
 
   before_action :set_user, only: %i[show edit update destroy]
+
   before_action :validate_record_owner, only: %i[show edit update destroy]
 
   # GET /users or /users.json
   def index
-    @users = current_user.admin? ? User.all : User.where(id: current_user.id)
+    @users = current_user&.admin? ? User.all : User.where(id: current_user&.id)
   end
 
   # GET /users/1 or /users/1.json
-  def show
-  end
+  def show; end
 
   # GET /users/new
   def new
@@ -19,8 +19,7 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /users or /users.json
   def create

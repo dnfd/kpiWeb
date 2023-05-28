@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  wrap_parameters format: [:json, :xml]
+  wrap_parameters format: %i[json xml]
 
   protect_from_forgery unless: -> { request.format.json? }
 

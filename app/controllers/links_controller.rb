@@ -5,12 +5,11 @@ class LinksController < ApplicationController
 
   # GET /links or /links.json
   def index
-    @links = current_user.admin? ? Link.all : current_user.links
+    @links = current_user&.admin? ? Link.all : current_user.links
   end
 
   # GET /links/1 or /links/1.json
-  def show
-  end
+  def show; end
 
   # GET /links/new
   def new
@@ -18,8 +17,7 @@ class LinksController < ApplicationController
   end
 
   # GET /links/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /links or /links.json
   def create

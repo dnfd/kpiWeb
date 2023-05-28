@@ -81,5 +81,5 @@ gem "rspec-rails", "~> 6.0"
 gem "rswag-specs", "~> 2.9"
 
 gem "resque", "~> 2.5"
-gem "resque-web", "~> 0.0.12"
+gem 'resque-web', require: 'resque_web'
 gem "redis", "~> 5.0"

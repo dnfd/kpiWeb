@@ -5,11 +5,16 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
-  get '/:url', to: 'redirect#index'
-
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   mount ActionCable.server => '/cable'
+
+  require 'resque/server'
+  mount Resque::Server => '/jobs'
+  require 'resque_web'
+  mount ResqueWeb::Engine => '/resque'
+
+  get '/:url', to: 'redirect#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

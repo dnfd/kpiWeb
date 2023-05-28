@@ -325,7 +325,7 @@ DEPENDENCIES
   rails (~> 7.0.5)
   redis (~> 5.0)
   resque (~> 2.5)
-  resque-web (~> 0.0.12)
+  resque-web
   rspec-rails (~> 6.0)
   rswag (~> 2.9)
   rswag-api (~> 2.9)

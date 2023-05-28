@@ -8,7 +8,7 @@ class CleanupJob < ApplicationJob
   private
 
   def links_to_delete
-    Link.where('created_at < ? ', Time.zone.today - 1.month)
+    Link.where('created_at < ?', Time.zone.today - 1.month)
         .select do |link|
           last_used = link.trackings.maximum(:created_at)
           next true unless last_used

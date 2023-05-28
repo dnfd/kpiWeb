@@ -27,6 +27,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        NotifierMailer.welcome(@user.id).deliver_later
+
         format.html { redirect_to user_url(@user), notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else

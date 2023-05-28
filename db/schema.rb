@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_28_093950) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["short"], name: "index_links_on_short", unique: true
     t.index ["user_id"], name: "index_links_on_user_id"
   end
 

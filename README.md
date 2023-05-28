@@ -2,7 +2,9 @@
 
 Fedorchenko Denys, KV-21mn
 
-[Lab1](https://docs.google.com/document/d/1UmjXf9MKkGHCGwiyyuUJqHVKFr7z8kLdcMN450GmSTk/edit)
+[Lab1](https://docs.google.com/document/d/1UmjXf9MKkGHCGwiyyuUJqHVKFr7z8kLdcMN450GmSTk/edit?usp=sharing)
+
+[Lab2](https://docs.google.com/document/d/1wEqf9eZLcxV6LYjvugwT5_dCwMw9X3s_S7_Dk4tZ9QY/edit?usp=sharing)
 
 ## Start (Ruby 3.1.2 required)
 

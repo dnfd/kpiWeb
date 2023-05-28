@@ -1,24 +1,31 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Fedorchenko Denys, KV-21mn
 
-Things you may want to cover:
+[Lab1](https://docs.google.com/document/d/1UmjXf9MKkGHCGwiyyuUJqHVKFr7z8kLdcMN450GmSTk/edit)
 
-* Ruby version
+## Start (Ruby 3.1.2 required)
 
-* System dependencies
+Download dependancies:
 
-* Configuration
+```
+bundle install
+```
 
-* Database creation
+Prepare database
 
-* Database initialization
+```
+rake db:create db:migrate
+```
 
-* How to run the test suite
+Run Server:
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+rails s
+```
 
-* Deployment instructions
+### Access Docs
 
-* ...
+```
+localhost:3000/api-docs
+```

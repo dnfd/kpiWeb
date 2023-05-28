@@ -19,7 +19,38 @@ RSpec.describe 'users', type: :request do
     end
 
     post('create user') do
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :params, in: :body, schema: {
+        properties: {
+          email: { type: :string },
+          password: { type: :string },
+          first_name: { type: :string },
+          last_name: { type: :string },
+          dob: { type: :string },
+          gender: { type: :string }
+        }
+      }
+      request_body_example value: {
+        email: 'test@test.com',
+        password: 'password',
+        first_name: 'Test',
+        last_name: 'Testenko',
+        dob: '07-05-1993',
+        gender: 'male'
+      }
+
       response(200, 'successful') do
+        let(:params) do
+          {
+            email: 'test@test.com',
+            password: 'password',
+            first_name: 'Test',
+            last_name: 'Testenko',
+            dob: '07-05-1993',
+            gender: 'male'
+          }
+        end
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -89,23 +120,39 @@ RSpec.describe 'users', type: :request do
       end
     end
 
-    patch('update user') do
-      response(200, 'successful') do
-        let(:id) { '123' }
+    put('update user') do
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :params, in: :body, schema: {
+        properties: {
+          email: { type: :string },
+          password: { type: :string },
+          first_name: { type: :string },
+          last_name: { type: :string },
+          dob: { type: :string },
+          gender: { type: :string }
+        }
+      }
+      request_body_example value: {
+        email: 'test@test.com',
+        password: 'password',
+        first_name: 'Test',
+        last_name: 'Testenko',
+        dob: '07-05-1993',
+        gender: 'male'
+      }
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
+      response(200, 'successful') do
+        let(:params) do
+          {
+            email: 'test@test.com',
+            password: 'password',
+            first_name: 'Test',
+            last_name: 'Testenko',
+            dob: '07-05-1993',
+            gender: 'male'
           }
         end
-        run_test!
-      end
-    end
-
-    put('update user') do
-      response(200, 'successful') do
         let(:id) { '123' }
 
         after do |example|

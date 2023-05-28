@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  wrap_parameters :user, include: %i[email password first_name last_name dob gender]
+
   before_action :set_user, only: %i[show edit update destroy]
   before_action :validate_record_owner, only: %i[show edit update destroy]
 
@@ -66,7 +68,7 @@ class UsersController < ApplicationController
 
   def user_params
     params
-      .fetch(:user, params)
+      .require(:user)
       .permit(:email, :password, :first_name, :last_name, :dob, :gender)
   end
 end

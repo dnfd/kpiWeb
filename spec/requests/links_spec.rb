@@ -22,7 +22,18 @@ RSpec.describe 'links', type: :request do
     end
 
     post('create link') do
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :params, in: :body, schema: {
+        properties: {
+          full: { type: :string },
+          short: { type: :string }
+        }
+      }
+      request_body_example value: { full: 'http://www.google.com', short: nil }
+
       response(200, 'successful') do
+        let(:params) { { full: 'http://www.google.com', short: nil } }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -92,24 +103,20 @@ RSpec.describe 'links', type: :request do
       end
     end
 
-    patch('update link') do
-      response(200, 'successful') do
-        let(:id) { '123' }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-
     put('update link') do
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :params, in: :body, schema: {
+        properties: {
+          full: { type: :string },
+          short: { type: :string }
+        }
+      }
+      request_body_example value: { full: 'http://www.google.com', short: nil }
+
       response(200, 'successful') do
-        let(:id) { '123' }
+        let(:id) { 123 }
+        let(:params) { { full: 'http://www.google.com', short: nil } }
 
         after do |example|
           example.metadata[:response][:content] = {

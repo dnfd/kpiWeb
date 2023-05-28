@@ -12,9 +12,25 @@ paths:
           description: successful
     post:
       summary: create link
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                full:
+                  type: string
+                short:
+                  type: string
+            examples:
+              '0':
+                summary: create link
+                value:
+                  full: http://www.google.com
+                  short: 
   "/links/new":
     get:
       summary: new link
@@ -47,16 +63,27 @@ paths:
       responses:
         '200':
           description: successful
-    patch:
-      summary: update link
-      responses:
-        '200':
-          description: successful
     put:
       summary: update link
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                full:
+                  type: string
+                short:
+                  type: string
+            examples:
+              '0':
+                summary: update link
+                value:
+                  full: http://www.google.com
+                  short: 
     delete:
       summary: delete link
       responses:
@@ -83,11 +110,7 @@ paths:
           description: successful
     post:
       summary: create session
-      parameters:
-      - name: Accept
-        in: header
-        schema:
-          type: string
+      parameters: []
       responses:
         '200':
           description: successful
@@ -114,9 +137,37 @@ paths:
           description: successful
     post:
       summary: create user
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                dob:
+                  type: string
+                gender:
+                  type: string
+            examples:
+              '0':
+                summary: create user
+                value:
+                  email: test@test.com
+                  password: password
+                  first_name: Test
+                  last_name: Testenko
+                  dob: 07-05-1993
+                  gender: male
   "/users/new":
     get:
       summary: new user
@@ -149,16 +200,39 @@ paths:
       responses:
         '200':
           description: successful
-    patch:
-      summary: update user
-      responses:
-        '200':
-          description: successful
     put:
       summary: update user
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                dob:
+                  type: string
+                gender:
+                  type: string
+            examples:
+              '0':
+                summary: update user
+                value:
+                  email: test@test.com
+                  password: password
+                  first_name: Test
+                  last_name: Testenko
+                  dob: 07-05-1993
+                  gender: male
     delete:
       summary: delete user
       responses:

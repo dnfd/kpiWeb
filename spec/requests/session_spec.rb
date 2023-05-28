@@ -24,7 +24,6 @@ RSpec.describe 'session', type: :request do
           password: { type: :string }
         }
       }
-      parameter name: 'Accept', in: :header, type: :string
       request_body_example value: { email: 'test@test.com', password: 'password' }
 
       response(200, 'successful') do

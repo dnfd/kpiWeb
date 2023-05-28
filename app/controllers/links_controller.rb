@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
   before_action :set_link, only: %i[show edit update destroy]
-  before_action :validate_record_owner, only: %i[show edit update destroy]
   before_action :require_login
+  before_action :validate_record_owner, only: %i[show edit update destroy]
 
   # GET /links or /links.json
   def index
@@ -66,7 +66,7 @@ class LinksController < ApplicationController
   def set_link = @link = Link.find(params[:id])
 
   def link_params
-    params.fetch(:link, params)
+    params.require(:link)
           .permit(:full, :short)
           .merge(user: current_user)
   end

@@ -4,6 +4,7 @@ class User < ApplicationRecord
   enum :gender, %i[male female]
 
   has_many :links
+  has_many :trackings
 
   validates :email, :gender, :first_name, :last_name, :password, presence: true
   validates :email, uniqueness: true,

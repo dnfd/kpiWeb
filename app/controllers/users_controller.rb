@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
+  before_action :validate_record_owner, only: %i[show edit update destroy]
 
   # GET /users or /users.json
   def index
-    @users = User.all
+    @users = current_user.admin? ? User.all : User.where(id: current_user.id)
   end
 
   # GET /users/1 or /users/1.json
@@ -59,9 +60,10 @@ class UsersController < ApplicationController
 
   private
 
+  def record_owner_id = @user&.id
+
   def set_user = @user = User.find(params[:id])
 
-  # Only allow a list of trusted parameters through.
   def user_params
     params
       .fetch(:user, params)

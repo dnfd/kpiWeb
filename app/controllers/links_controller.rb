@@ -1,10 +1,11 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: %i[ show edit update destroy ]
+  before_action :set_link, only: %i[show edit update destroy]
+  before_action :validate_record_owner, only: %i[show edit update destroy]
   before_action :require_login
 
   # GET /links or /links.json
   def index
-    @links = Link.all
+    @links = current_user.admin? ? Link.all : current_user.links
   end
 
   # GET /links/1 or /links/1.json
@@ -59,12 +60,11 @@ class LinksController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_link
-    @link = Link.find(params[:id])
-  end
 
-  # Only allow a list of trusted parameters through.
+  def record_owner_id = @link&.user_id
+
+  def set_link = @link = Link.find(params[:id])
+
   def link_params
     params.fetch(:link, params)
           .permit(:full, :short)

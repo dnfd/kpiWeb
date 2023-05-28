@@ -6,7 +6,10 @@ class User < ApplicationRecord
   has_many :links
   has_many :trackings
 
-  validates :email, :gender, :first_name, :last_name, :password, presence: true
+  validates :password, presence: true, on: :create
+  validates :email, :gender, :first_name, :last_name, :dob, presence: true
   validates :email, uniqueness: true,
                     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+
+  def admin? = role == 'admin'
 end

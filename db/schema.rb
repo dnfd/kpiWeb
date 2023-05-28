@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_28_093950) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_28_183124) do
   create_table "links", force: :cascade do |t|
     t.string "full", limit: 256
     t.string "short", limit: 20
@@ -42,6 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_28_093950) do
     t.date "dob"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "online"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

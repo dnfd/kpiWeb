@@ -1,12 +1,10 @@
 require 'swagger_helper'
 
 RSpec.describe 'users', type: :request do
-
   path '/users' do
-
     get('list users') do
+      security [cookie_auth: []]
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -64,48 +62,49 @@ RSpec.describe 'users', type: :request do
     end
   end
 
-  path '/users/new' do
+  # path '/users/new' do
+  #   get('new user') do
+  #     response(200, 'successful') do
 
-    get('new user') do
-      response(200, 'successful') do
+  #       after do |example|
+  #         example.metadata[:response][:content] = {
+  #           'application/json' => {
+  #             example: JSON.parse(response.body, symbolize_names: true)
+  #           }
+  #         }
+  #       end
+  #       run_test!
+  #     end
+  #   end
+  # end
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-  end
+  # path '/users/{id}/edit' do
+  #   # You'll want to customize the parameter types...
+  #   parameter name: 'id', in: :path, type: :string, description: 'id'
 
-  path '/users/{id}/edit' do
-    # You'll want to customize the parameter types...
-    parameter name: 'id', in: :path, type: :string, description: 'id'
+  #   get('edit user') do
+  #     security [cookie_auth: []]
+  #     response(200, 'successful') do
+  #       let(:id) { '123' }
 
-    get('edit user') do
-      response(200, 'successful') do
-        let(:id) { '123' }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-  end
+  #       after do |example|
+  #         example.metadata[:response][:content] = {
+  #           'application/json' => {
+  #             example: JSON.parse(response.body, symbolize_names: true)
+  #           }
+  #         }
+  #       end
+  #       run_test!
+  #     end
+  #   end
+  # end
 
   path '/users/{id}' do
     # You'll want to customize the parameter types...
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
     get('show user') do
+      security [cookie_auth: []]
       response(200, 'successful') do
         let(:id) { '123' }
 
@@ -141,6 +140,7 @@ RSpec.describe 'users', type: :request do
         dob: '07-05-1993',
         gender: 'male'
       }
+      security [cookie_auth: []]
 
       response(200, 'successful') do
         let(:params) do
@@ -167,6 +167,7 @@ RSpec.describe 'users', type: :request do
     end
 
     delete('delete user') do
+      security [cookie_auth: []]
       response(200, 'successful') do
         let(:id) { '123' }
 

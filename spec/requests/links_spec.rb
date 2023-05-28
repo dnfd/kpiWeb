@@ -1,12 +1,11 @@
 require 'swagger_helper'
 
 RSpec.describe 'links', type: :request do
-
   path '/links' do
-
     get('list links') do
       consumes 'application/json'
       produces 'application/json'
+      security [cookie_auth: []]
 
       response(200, 'successful') do
 
@@ -31,6 +30,7 @@ RSpec.describe 'links', type: :request do
         }
       }
       request_body_example value: { full: 'http://www.google.com', short: nil }
+      security [cookie_auth: []]
 
       response(200, 'successful') do
         let(:params) { { full: 'http://www.google.com', short: nil } }
@@ -47,48 +47,48 @@ RSpec.describe 'links', type: :request do
     end
   end
 
-  path '/links/new' do
+  # path '/links/new' do
+  #   get('new link') do
+  #     response(200, 'successful') do
 
-    get('new link') do
-      response(200, 'successful') do
+  #       after do |example|
+  #         example.metadata[:response][:content] = {
+  #           'application/json' => {
+  #             example: JSON.parse(response.body, symbolize_names: true)
+  #           }
+  #         }
+  #       end
+  #       run_test!
+  #     end
+  #   end
+  # end
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-  end
+  # path '/links/{id}/edit' do
+  #   # You'll want to customize the parameter types...
+  #   parameter name: 'id', in: :path, type: :string, description: 'id'
 
-  path '/links/{id}/edit' do
-    # You'll want to customize the parameter types...
-    parameter name: 'id', in: :path, type: :string, description: 'id'
+  #   get('edit link') do
+  #     response(200, 'successful') do
+  #       let(:id) { '123' }
 
-    get('edit link') do
-      response(200, 'successful') do
-        let(:id) { '123' }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-  end
+  #       after do |example|
+  #         example.metadata[:response][:content] = {
+  #           'application/json' => {
+  #             example: JSON.parse(response.body, symbolize_names: true)
+  #           }
+  #         }
+  #       end
+  #       run_test!
+  #     end
+  #   end
+  # end
 
   path '/links/{id}' do
     # You'll want to customize the parameter types...
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
     get('show link') do
+      security [cookie_auth: []]
       response(200, 'successful') do
         let(:id) { '123' }
 
@@ -113,6 +113,7 @@ RSpec.describe 'links', type: :request do
         }
       }
       request_body_example value: { full: 'http://www.google.com', short: nil }
+      security [cookie_auth: []]
 
       response(200, 'successful') do
         let(:id) { 123 }
@@ -130,6 +131,7 @@ RSpec.describe 'links', type: :request do
     end
 
     delete('delete link') do
+      security [cookie_auth: []]
       response(200, 'successful') do
         let(:id) { '123' }
 

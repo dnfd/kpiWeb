@@ -3,16 +3,25 @@ openapi: 3.0.1
 info:
   title: API V1
   version: v1
+components:
+  securitySchemes:
+    cookie_auth:
+      type: apiKey
+      in: cookie
 paths:
   "/links":
     get:
       summary: list links
+      security:
+      - cookie_auth: []
       responses:
         '200':
           description: successful
     post:
       summary: create link
       parameters: []
+      security:
+      - cookie_auth: []
       responses:
         '200':
           description: successful
@@ -31,25 +40,6 @@ paths:
                 value:
                   full: http://www.google.com
                   short: 
-  "/links/new":
-    get:
-      summary: new link
-      responses:
-        '200':
-          description: successful
-  "/links/{id}/edit":
-    parameters:
-    - name: id
-      in: path
-      description: id
-      required: true
-      schema:
-        type: string
-    get:
-      summary: edit link
-      responses:
-        '200':
-          description: successful
   "/links/{id}":
     parameters:
     - name: id
@@ -60,12 +50,16 @@ paths:
         type: string
     get:
       summary: show link
+      security:
+      - cookie_auth: []
       responses:
         '200':
           description: successful
     put:
       summary: update link
       parameters: []
+      security:
+      - cookie_auth: []
       responses:
         '200':
           description: successful
@@ -86,6 +80,8 @@ paths:
                   short: 
     delete:
       summary: delete link
+      security:
+      - cookie_auth: []
       responses:
         '200':
           description: successful
@@ -132,6 +128,8 @@ paths:
   "/users":
     get:
       summary: list users
+      security:
+      - cookie_auth: []
       responses:
         '200':
           description: successful
@@ -168,25 +166,6 @@ paths:
                   last_name: Testenko
                   dob: 07-05-1993
                   gender: male
-  "/users/new":
-    get:
-      summary: new user
-      responses:
-        '200':
-          description: successful
-  "/users/{id}/edit":
-    parameters:
-    - name: id
-      in: path
-      description: id
-      required: true
-      schema:
-        type: string
-    get:
-      summary: edit user
-      responses:
-        '200':
-          description: successful
   "/users/{id}":
     parameters:
     - name: id
@@ -197,12 +176,16 @@ paths:
         type: string
     get:
       summary: show user
+      security:
+      - cookie_auth: []
       responses:
         '200':
           description: successful
     put:
       summary: update user
       parameters: []
+      security:
+      - cookie_auth: []
       responses:
         '200':
           description: successful
@@ -235,6 +218,8 @@ paths:
                   gender: male
     delete:
       summary: delete user
+      security:
+      - cookie_auth: []
       responses:
         '200':
           description: successful

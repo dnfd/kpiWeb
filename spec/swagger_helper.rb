@@ -21,6 +21,14 @@ RSpec.configure do |config|
         title: 'API V1',
         version: 'v1'
       },
+      components: {
+        securitySchemes: {
+          cookie_auth: {
+            type: :apiKey,
+            in: :cookie
+          }
+        }
+      },
       paths: {},
       servers: [
         {

@@ -62,6 +62,19 @@ paths:
       responses:
         '200':
           description: successful
+  "/{url}":
+    parameters:
+    - name: url
+      in: path
+      description: url
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list redirects
+      responses:
+        '200':
+          description: successful
   "/session":
     delete:
       summary: delete session

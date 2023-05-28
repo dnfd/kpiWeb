@@ -8,7 +8,7 @@ class SessionController < ApplicationController
     session[:user_id] = user.id
   end
 
-  def delete = (session[:user_id] = nil)
+  def destroy = (session[:user_id] = nil)
 
   private
 

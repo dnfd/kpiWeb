@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
-  get 'home/index'
+  get '/:url', to: 'redirect#index'
 
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'

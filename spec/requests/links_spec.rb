@@ -5,6 +5,9 @@ RSpec.describe 'links', type: :request do
   path '/links' do
 
     get('list links') do
+      consumes 'application/json'
+      produces 'application/json'
+
       response(200, 'successful') do
 
         after do |example|

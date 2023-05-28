@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :links
-  resources :users
-  resources :session, only: %i[create] do
+  resources :links, defaults: { format: 'json'}
+  resources :users, defaults: { format: 'json'}
+  resources :session, only: %i[create], defaults: { format: 'json' } do
     delete :destroy, on: :collection
   end
 

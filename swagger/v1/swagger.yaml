@@ -70,9 +70,29 @@ paths:
           description: successful
     post:
       summary: create session
+      parameters:
+      - name: Accept
+        in: header
+        schema:
+          type: string
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+            examples:
+              '0':
+                summary: create session
+                value:
+                  email: test@test.com
+                  password: password
   "/users":
     get:
       summary: list users
